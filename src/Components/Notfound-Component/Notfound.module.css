@@ -1,0 +1,28 @@
+.section {
+  min-height: calc(100vh - 148.4px);
+  background-color: #421c59;
+}
+
+.house {
+  background-image: url(./images/Banner.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 778px;
+  height: 589px;
+  left: 25%;
+}
+
+.heading {
+  color: white;
+  z-index: 10;
+  position: relative;
+}
+
+.headingCont {
+  min-height: calc(100vh - 148.4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

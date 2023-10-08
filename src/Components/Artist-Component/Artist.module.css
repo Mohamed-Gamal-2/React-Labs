@@ -1,0 +1,50 @@
+.image {
+  max-width: 265px;
+  max-height: 265px;
+}
+
+.white {
+  color: white;
+}
+
+.yellow {
+  color: #f7ea66;
+}
+.section {
+  min-height: calc(100vh - 148.4px);
+  background-color: #421c59;
+}
+
+.btns {
+  border-radius: 50%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: 1.2s;
+}
+.btns:hover {
+  transform: scale(1.2);
+}
+.web {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  max-width: 547px;
+  width: 547px;
+  max-height: 527px;
+  height: 527px;
+  top: 0px;
+  background-repeat: no-repeat;
+  background-image: url(./images/about-spider-wev-image.png);
+}
+
+.spider {
+  position: absolute;
+  z-index: 1;
+  width: 60px;
+  left: 50%;
+  top: 0px;
+  height: 267px;
+  background-repeat: no-repeat;
+  background-image: url(./images/title-spider.png);
+}
