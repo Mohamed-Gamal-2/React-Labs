@@ -1,5 +1,5 @@
 //Using imported styles here
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 import landing from "./images/Banner.png";
 
