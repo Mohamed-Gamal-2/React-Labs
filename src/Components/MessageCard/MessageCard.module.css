@@ -1,0 +1,8 @@
+.meCard {
+  margin-top: 30px;
+  max-width: 80%;
+  background-color: white;
+  position: relative;
+  border: black 1px solid;
+  min-height: 50px;
+}

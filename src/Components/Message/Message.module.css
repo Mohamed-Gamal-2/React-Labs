@@ -1,0 +1,52 @@
+.meUserSection {
+  margin-top: 100px;
+  max-width: 80%;
+  background-color: white;
+  position: relative;
+  border: black 1px solid;
+  min-height: 200px;
+}
+
+.meAvatar {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+}
+
+.meTextArea {
+  margin-top: 80px;
+}
+
+.meBtn {
+  color: #5dd6df;
+  border: 1px solid #5dd6df;
+  background-color: white;
+  margin-top: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  align-items: center;
+}
+.meBtn:hover {
+  background-color: #5dd6df;
+  border: 1px solid white;
+  color: white;
+}
+
+.error {
+  font-size: 24px;
+  color: red;
+  margin-top: 50px;
+}
+.meAlert {
+  font-size: 12px;
+  color: red;
+  margin-top: 8px;
+}
+.meSuccess {
+  font-size: 12px;
+  color: green;
+  margin-top: 8px;
+}
