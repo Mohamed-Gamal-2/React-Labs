@@ -5,12 +5,13 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import JWTcontextProvider from "../../Contexts/JWTcontext";
 import { QueryClient, QueryClientProvider } from "react-query";
-const queryClient = new QueryClient();
+import { Provider } from "react-redux";
+import store from "../../Redux/Store";
 
 export default function Layout() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <JWTcontextProvider>
           <Navbar />
           <div className={`${styles.stayBottom} container`}>
@@ -18,7 +19,7 @@ export default function Layout() {
           </div>
           <Footer />
         </JWTcontextProvider>
-      </QueryClientProvider>
+      </Provider>
     </>
   );
 }

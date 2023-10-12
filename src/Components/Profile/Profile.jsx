@@ -1,31 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
-import { useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 import avatar from "./images/avatar.png";
 import MessageCard from "../MessageCard/MessageCard";
 import jwtDecode from "jwt-decode";
 import Modall from "../Modal/Modal";
 import StaticExample from "../Modal/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { APIReducer, fetchData } from "../../Redux/APISlice";
 
 export default function Profile() {
   let [username, setUsername] = useState();
   let [userId, setUserID] = useState();
   let [isShown, setIsShown] = useState(false);
+  let [allMessages, setAllMessages] = useState([]);
+  let { APIData } = useSelector((state) => state.APIData);
 
-  let allMessages = [];
-  let { data, isLoading } = useQuery("Messges", fetchData);
-  if (!isLoading) {
-    allMessages = data.data.allMessages;
-  }
-
-  function fetchData() {
-    return axios.get("https://sara7aiti.onrender.com/api/v1/message", {
-      headers: {
-        token: localStorage.getItem("userToken"),
-      },
-    });
-  }
+  let dispatch = useDispatch();
 
   function getUserData() {
     let token = localStorage.getItem("userToken");
@@ -37,6 +28,10 @@ export default function Profile() {
   useEffect(() => {
     getUserData();
   });
+  useEffect(() => {
+    dispatch(fetchData());
+    setAllMessages(APIData.allMessages);
+  }, [APIData]);
 
   return (
     <div className={`${isShown ? styles.mestopScroll : null}`}>
@@ -58,7 +53,7 @@ export default function Profile() {
         </button>
       </section>
 
-      {allMessages.length > 0 ? (
+      {allMessages?.length > 0 ? (
         <>
           {allMessages.map((ele) => (
             <MessageCard key={ele._id} ele={ele} />
