@@ -13,12 +13,33 @@ export let fetchData = createAsyncThunk("API/fetchData", async () => {
   return data;
 });
 
+export const sendMessage = createAsyncThunk(
+  "messages/sendMessage",
+  async (messageData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "https://sara7aiti.onrender.com/api/v1/message",
+        messageData
+      );
+      return response.data.messaged;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 let APISlice = createSlice({
   name: "API",
   initialState: { APIData: [] },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
       state.APIData = action.payload;
+    });
+    builder.addCase(sendMessage.fulfilled, (state, action) => {
+      console.log("Message:", action.payload);
+    });
+    builder.addCase(sendMessage.rejected, (state, action) => {
+      console.log("Message:", action.payload);
     });
   },
 });
