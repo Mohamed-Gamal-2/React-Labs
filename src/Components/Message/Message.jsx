@@ -1,44 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Message.module.css";
 import { useParams } from "react-router-dom";
 import avatar from "./images/avatar.png";
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { sendMessage } from "../../Redux/APISlice";
 
 export default function Message() {
   let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState("");
   let [success, setSuccess] = useState(false);
   const { id } = useParams();
+  const dispatch = useDispatch();
 
-  function sendMessage(values) {
-    setIsLoading(true);
-    axios
-      .post("https://sara7aiti.onrender.com/api/v1/message", {
-        ...values,
-        receivedId: id,
-      })
-      .then((data) => {
-        let {
-          data: { messaged },
-        } = data;
-
-        if (messaged == "Added") {
-          setSuccess(true);
-          setIsLoading(false);
-          form.values.messageContent = "";
-        }
-      })
-      .catch((err) => {
-        let {
-          response: {
-            data: { error },
-          },
-        } = err;
-        setError(error);
-        setIsLoading(false);
-      });
+  async function AddNewMessage(values) {
+    try {
+      dispatch(
+        sendMessage({
+          ...values,
+          receivedId: id,
+        })
+      );
+      setSuccess(true);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const validationSchema = Yup.object({
@@ -55,7 +42,7 @@ export default function Message() {
     validationSchema,
 
     onSubmit: (values) => {
-      sendMessage(values);
+      AddNewMessage(values);
     },
   });
 
